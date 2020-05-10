@@ -30,7 +30,7 @@ The signature is in form of your name and a timestamp of when the file was creat
 
 # How to contribute
 - if you would like to improve the windows application, look inside the app folder
-- To improve the command line application, simply look at the `signer.py` file
+- To improve the command line application, simply look at the `main.py` file
 - To test your implementation, look inside the test folder and write test for your new implementation in the `test.py` file
   **Contribution ideas**
     - implement a faster algorithm to check if a file has already been signed before
