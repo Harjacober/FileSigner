@@ -1,20 +1,7 @@
 from os import path, listdir, stat
-import argparse
 import time
 from symbols import symbols
 import platform
-
-
-argParser = argparse.ArgumentParser(description="Prepend Signature to Files") 
-argParser.add_argument('--dir_path', type=str, help='Path to the directory whose files are to be signed')
-argParser.add_argument('--author', type=str, help="Full name of file owner")
-args = argParser.parse_args()
-
-# check that argment specified is a valid file or directory
-assert(path.isdir(args.dir_path) or path.isfile(args.dir_path)), "You have to specify a directory by setting --dir_path"
-if path.isdir(args.dir_path):
-    assert(len(listdir(args.dir_path)) > 0), "No files to sign here"
-
 
 # Get File extension 
 getExtension = lambda fileName : fileName.split('.')[-1]
@@ -41,9 +28,9 @@ def fileAlreadySigned(contents, signature):
     return signature in contents
 
 # Signs a file
-def signFile(filePath, symbol): 
+def signFile(filePath, symbol,author): 
     date = createdAt(filePath)
-    signature = generateSignature(symbol, args.author, date) 
+    signature = generateSignature(symbol, author, date) 
     f = open(filePath, 'r')
     contents = f.readlines()
     if not fileAlreadySigned(''.join(contents), signature): 
@@ -59,20 +46,25 @@ def signFile(filePath, symbol):
 def getSymbol(extension): 
     return symbols[extension]
 
-# signing a file
-if path.isfile(args.dir_path):
-    symbol = getSymbol(getExtension(args.dir_path))
-    if symbol:
-        signFile(args.dir_path, symbol)
-    else:
-        print("Oops! File type not supported")
-#signing files in a folder
-else:
-    for file in listdir(args.dir_path):
-        symbol = getSymbol(getExtension(file))
-        filePath = args.dir_path + "/" + file
-        if symbol and path.isfile(filePath):
-            signFile(filePath, symbol)
+def Sign(dir_path,author,*args):
+    # check that argment specified is a valid file or directory
+    assert(path.isdir(dir_path) or path.isfile(dir_path)), "You have to specify a directory by setting --dir_path"
+    if path.isdir(dir_path):
+        assert(len(listdir(dir_path)) > 0), "No files to sign here"
+    # signing a file
+    if path.isfile(dir_path):
+        symbol = getSymbol(getExtension(dir_path))
+        if symbol:
+            signFile(dir_path, symbol,author)
         else:
-            print("Oops! File type not supported or Encountered a folder")
- 
+            print("Oops! File type not supported")
+    #signing files in a folder
+    else:
+        for file in listdir(dir_path):
+            symbol = getSymbol(getExtension(file))
+            filePath = dir_path + "/" + file
+            if symbol and path.isfile(filePath):
+                signFile(filePath, symbol,author)
+            else:
+                print("Oops! File type not supported or Encountered a folder")
+    
