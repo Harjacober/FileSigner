@@ -1,3 +1,21 @@
+"""
+**
+ * author :   	HP
+ * created : 	Sat May  9 20:23:01 2020
+**
+"""
+"""
+**
+ * author :   	HP
+ * created : 	Sat May  9 20:23:01 2020
+**
+"""
+"""
+**
+ * author :   	HP
+ * created : 	Sat May  9 20:23:01 2020
+**
+"""
 symbols = {"py": ('"""','"""'),
             "java": ('/*','*/'),
             "js": ('/*','*/'),

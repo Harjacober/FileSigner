@@ -6,8 +6,8 @@ import platform
 
 
 argParser = argparse.ArgumentParser(description="Prepend Signature to Files") 
-argParser.add_argument('dir_path', type=str, help='Path to the directory whose files are to be signed')
-argParser.add_argument('author', type=str, help="Full name of file owner")
+argParser.add_argument('--dir_path', type=str, help='Path to the directory whose files are to be signed')
+argParser.add_argument('--author', type=str, help="Full name of file owner")
 args = argParser.parse_args()
 
 # check that argment specified is a valid file or directory
@@ -36,16 +36,24 @@ def generateSignature(symbol, name, date):
     signature = "{open}\n**\n * author :   \t{name}\n * created : \t{date}\n**\n{close}\n"
     return signature.format(open=symbol[0], close=symbol[1], name=name, date=date)
 
+# Checks if file has already been signed before
+def fileAlreadySigned(contents, signature):
+    return signature in contents
+
 # Signs a file
 def signFile(filePath, symbol): 
     date = createdAt(filePath)
     signature = generateSignature(symbol, args.author, date) 
     f = open(filePath, 'r')
     contents = f.readlines()
-    contents.insert(0, signature)
-    f.close()
-    with open(filePath, 'w+') as f:
-        f.write(''.join(contents))
+    if not fileAlreadySigned(''.join(contents), signature): 
+        contents.insert(0, signature)
+        f.close()
+        with open(filePath, 'w+') as f:
+            f.write(''.join(contents))
+        print("File successfully signed")
+    else:
+        print("File already signed before")
 
 # Get comment symbol based on file extension
 def getSymbol(extension): 
@@ -67,5 +75,4 @@ else:
             signFile(filePath, symbol)
         else:
             print("Oops! File type not supported or Encountered a folder")
-
-print("Done! File(s) successfully signed")
+ 

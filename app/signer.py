@@ -10,6 +10,16 @@ import getpass
 author = getpass.getuser()
 dir_path = getcwd()
 
+# Argument will be passed if a file is selected from the windows explorer
+argParser = argparse.ArgumentParser()
+argParser.add_argument('--dir_path', type=str, help='')
+args = argParser.parse_args()
+
+if args.dir_path:
+    dir_path = args.dir_path
+    # for debug purpose
+    print(dir_path)
+    
 # check that argment specified is a valid file or directory
 assert(path.isdir(dir_path) or path.isfile(dir_path)), "You have to specify a directory by setting --dir_path"
 if path.isdir(dir_path):
@@ -36,20 +46,31 @@ def generateSignature(symbol, name, date):
     signature = "{open}\n**\n * author :   \t{name}\n * created : \t{date}\n**\n{close}\n"
     return signature.format(open=symbol[0], close=symbol[1], name=name, date=date)
 
+# Checks if file has already been signed before
+def fileAlreadySigned(contents, signature):
+    return signature in contents
+
 # Signs a file
 def signFile(filePath, symbol): 
     date = createdAt(filePath)
     signature = generateSignature(symbol, author, date) 
     f = open(filePath, 'r')
     contents = f.readlines()
-    contents.insert(0, signature)
-    f.close()
-    with open(filePath, 'w+') as f:
-        f.write(''.join(contents))
+    if not fileAlreadySigned(''.join(contents), signature): 
+        contents.insert(0, signature)
+        f.close()
+        with open(filePath, 'w+') as f:
+            f.write(''.join(contents))
+        print("File successfully signed")
+    else:
+        print("File already signed before")
 
 # Get comment symbol based on file extension
-def getSymbol(extension): 
-    return symbols[extension]
+def getSymbol(extension):
+    if extension in symbols:
+        return symbols[extension]
+    else:
+        return None
 
 # signing a file
 if path.isfile(dir_path):
@@ -66,6 +87,6 @@ else:
         if symbol and path.isfile(filePath):
             signFile(filePath, symbol)
         else:
-            print("oops! File type not supported")
+            print("oops! File type not supported or Encountered a folder")
 
-print("Done! File(s) successfully signed or Encountered a folder")
+input()

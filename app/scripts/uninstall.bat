@@ -1,0 +1,1 @@
+REG DELETE "HKCR\Directory\Background\Shell\Sign here" /f
