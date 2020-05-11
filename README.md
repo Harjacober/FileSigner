@@ -33,5 +33,5 @@ The signature is in form of your name and a timestamp of when the file was creat
 - To improve the command line application, simply look at the `main.py` file
 - To test your implementation, look inside the test folder and write test for your new implementation in the `test.py` file
   **Contribution ideas**
-    - implement a faster algorithm to check if a file has already been signed before
+    - implement an optimal algorithm to check if a file has already been signed before
     - Allow the window application to support signing of a single file
