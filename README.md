@@ -1,5 +1,5 @@
 # FileSigner
-Prepend your signature to files created by you.
+Helps prepend your signature to files created by you.
 The signature is in form of your name and a timestamp of when the file was created
 
 # How to use
