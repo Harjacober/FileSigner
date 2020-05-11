@@ -35,3 +35,6 @@ The signature is in form of your name and a timestamp of when the file was creat
   **Contribution ideas**
     - implement an optimal algorithm to check if a file has already been signed before
     - Allow the window application to support signing of a single file
+
+# Sample
+![alt text](https://github.com/Harjacober/FileSigner/blob/master/test/images/java.png)  ![alt text](https://github.com/Harjacober/FileSigner/blob/master/test/images/python.png)
