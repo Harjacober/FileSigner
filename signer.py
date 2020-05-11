@@ -3,13 +3,16 @@ import time
 from symbols import symbols
 import platform
 
+
+
+
 # Get File extension 
 getExtension = lambda fileName : fileName.split('.')[-1]
 
 # Check if a file has extension
 hasExtension = lambda fileName : len(fileName.split('.'))>0
 
-# Get the time the file was created
+# Get the time a file was created
 def createdAt(filePath): 
     # We can get the time the file is created on Windows but only last modified time on linux
     if platform.system() in ('Windows', 'Linux'):
@@ -25,10 +28,10 @@ def generateSignature(symbol, name, date):
 
 # Checks if file has already been signed before
 def fileAlreadySigned(contents, signature):
-    return signature in contents
+    return signature[0:40] in contents
 
 # Signs a file
-def signFile(filePath, symbol,author): 
+def signFile(filePath, symbol, author): 
     date = createdAt(filePath)
     signature = generateSignature(symbol, author, date) 
     f = open(filePath, 'r')
@@ -46,11 +49,13 @@ def signFile(filePath, symbol,author):
 def getSymbol(extension): 
     return symbols[extension]
 
-def Sign(dir_path,author,*args):
+def Sign(dir_path, author, *args):
     # check that argment specified is a valid file or directory
     assert(path.isdir(dir_path) or path.isfile(dir_path)), "You have to specify a directory by setting --dir_path"
+    # check that there are files presents in the specified directory
     if path.isdir(dir_path):
         assert(len(listdir(dir_path)) > 0), "No files to sign here"
+
     # signing a file
     if path.isfile(dir_path):
         symbol = getSymbol(getExtension(dir_path))

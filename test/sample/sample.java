@@ -1,3 +1,3 @@
-class test {
-    
-}
+class sample { 
+
+}  
