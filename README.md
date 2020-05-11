@@ -1,6 +1,6 @@
 # FileSigner
 Helps prepend your signature to files created by you.
-The signature is in form of your name and a timestamp of when the file was created
+The signature is in form of your name and a timestamp of when the file was created. See screenshot below for how a signed file looks like.
 
 # How to use
 > **Via the command line**
