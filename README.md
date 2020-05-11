@@ -23,7 +23,7 @@ The signature is in form of your name and a timestamp of when the file was creat
   - No need to specify the directory path or the author name. The name of the current user is automatically used to sign the file
   - Only files in a directory can be signed. Single file cannnot be signed
   
-# Supported files
+# Supported files types
 ```
 {py,java,js,c,php,kt,go,pl,rb,xml,cofee,css,html,dart}
 ```
@@ -35,6 +35,7 @@ The signature is in form of your name and a timestamp of when the file was creat
   **Contribution ideas**
     - implement an optimal algorithm to check if a file has already been signed before
     - Allow the window application to support signing of a single file
+    - Add support for more file types
 
 # Sample
 ![alt text](https://github.com/Harjacober/FileSigner/blob/master/test/images/java.png)  ![alt text](https://github.com/Harjacober/FileSigner/blob/master/test/images/python.png)
