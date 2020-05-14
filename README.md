@@ -6,7 +6,7 @@ The signature is in form of your name and a timestamp of when the file was creat
 > **Via the command line**
   - clone the repository [here](https://github.com/Harjacober/FileSigner.git)
   - change your current directory to the `FileSigner` directory then,
-  - run `python signer.py --dir_path=[path to directory or file to be signed] --author=[name of the file owner]`
+  - run `python main.py --dir_path=[path to directory or file to be signed] --author=[name of the file owner]`
   - if specified `--dir_path` is a folder, it will sign all supported files in that folder. But if a file is specified, it will sign it if supported
 > **Windows application**
  - Download the installer file [here](https://drive.google.com/file/d/1u_6giH7OpeyLJCgA5sAn3gN6nTm8MUos/view?usp=sharing)
