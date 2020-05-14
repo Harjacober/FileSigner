@@ -36,6 +36,7 @@ The signature is in form of your name and a timestamp of when the file was creat
     - implement an optimal algorithm to check if a file has already been signed before
     - Allow the window application to support signing of a single file
     - Add support for more file types
+    - Ads support for files that doesn't support multi-line comments. e.g `R files`
 
 # Sample
 ![alt text](https://github.com/Harjacober/FileSigner/blob/master/test/images/java.png)  ![alt text](https://github.com/Harjacober/FileSigner/blob/master/test/images/python.png)
