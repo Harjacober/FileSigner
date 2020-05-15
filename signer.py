@@ -2,7 +2,7 @@ from os import path, listdir, stat
 import time
 from symbols import symbols
 import platform
-
+from collections import deque
 
 
 
@@ -26,18 +26,21 @@ def generateSignature(symbol, name, date):
     signature = "{open}\n**\n * author :   \t{name}\n * created : \t{date}\n**\n{close}\n"
     return signature.format(open=symbol[0], close=symbol[1], name=name, date=date)
 
-# Checks if file has already been signed before
+# Checks if file has already been signed before 
 def fileAlreadySigned(contents, signature):
-    return signature[0:40] in contents
-
+    return signature[0:40] in contents[0:50]  #checking 0-50th index of the string instead of the whole string, to increase search time
 # Signs a file
 def signFile(filePath, symbol, author): 
     date = createdAt(filePath)
     signature = generateSignature(symbol, author, date) 
     f = open(filePath, 'r')
     contents = f.readlines()
-    if not fileAlreadySigned(''.join(contents), signature): 
-        contents.insert(0, signature)
+
+    #turning contents into deque
+    contents = deque(contents)   #using deque for optimization from O(n) to O(1)
+    if not fileAlreadySigned(''.join(contents), signature):  
+        contents.appendleft(signature) 
+        #contents.insert(0, signature)
         f.close()
         with open(filePath, 'w+') as f:
             f.write(''.join(contents))
