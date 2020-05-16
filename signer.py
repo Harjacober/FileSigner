@@ -2,7 +2,6 @@ from os import path, listdir, stat
 import time
 from symbols import symbols
 import platform
-from collections import deque
 
 
 
@@ -36,11 +35,11 @@ def signFile(filePath, symbol, author):
     f = open(filePath, 'r')
     contents = f.readlines()
 
-    #turning contents into deque
-    contents = deque(contents)   #using deque for optimization from O(n) to O(1)
-    if not fileAlreadySigned(''.join(contents), signature):  
-        contents.appendleft(signature) 
-        #contents.insert(0, signature)
+    #stripping off empty spaces and trailing new lines
+    cont = ''.join(contents)
+    cont.replace('\n', '').replace('\t','').replace('\r','')
+    if not fileAlreadySigned(cont, signature):
+        contents.insert(0, signature)
         f.close()
         with open(filePath, 'w+') as f:
             f.write(''.join(contents))

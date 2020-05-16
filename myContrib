@@ -2,5 +2,5 @@ php, c#, swift, R, Scala file support
 
 optimization of algorithm for checking if a file has been signed (checking the 0-50th index, instead of the whole string)
 
-optimization of insertion of signature in the file, using the deque data structure, that reduces from O(n) to O(1)
+optimization of insertion of signature in the file, using the deque data structure, that reduces time complexity from O(n) to O(1)
 
