@@ -34,11 +34,8 @@ def signFile(filePath, symbol, author):
     signature = generateSignature(symbol, author, date) 
     f = open(filePath, 'r')
     contents = f.readlines()
-
-    #stripping off empty spaces and trailing new lines
-    cont = ''.join(contents)
-    cont.replace('\n', '').replace('\t','').replace('\r','')
-    if not fileAlreadySigned(cont, signature):
+ 
+    if not fileAlreadySigned(''.join(contents).lstrip(), signature):
         contents.insert(0, signature)
         f.close()
         with open(filePath, 'w+') as f:

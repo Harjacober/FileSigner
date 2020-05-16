@@ -29,7 +29,7 @@ class AppTests(unittest.TestCase):
                 signer.Sign(pathToTestFile+file, author)
                 with open(pathToTestFile+file, "r") as f:
                     self.assertTrue(author in f.read())
-                # write back the old file contents before signing
+                # write back the old file contents after signing
                 with open(pathToTestFile + file, "w") as f:
                     f.write(oldContent)
 
