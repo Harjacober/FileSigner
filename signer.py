@@ -28,7 +28,7 @@ def generateSignature(symbol, name, date):
 
     signature_mul = "{open}\n{open}**\n{open} * author :   \t{name}\n{open} * created : \t{date}\n{open}**\n{close}\n"
 
-    if symbol[0] in ['#']: #we can add other into a list and check if it is in it...
+    if symbol[2]:
 
         return signature_mul.format(open=symbol[0], close=symbol[1], name=name, date=date)
 
