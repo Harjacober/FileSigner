@@ -22,5 +22,6 @@ jobs:
         python-version: 3.8 
     - name: Run Test
       run: |
-        export PYTHONPATH="${PYTHONPATH}:./"
-        python ./test/test.py
+        export PYTHONPATH="${PYTHONPATH}:/home/runner/work/FileSigner/FileSigner"
+        cd test
+        python test.py
