@@ -5,7 +5,6 @@ import platform
 
 
 
-
 # Get File extension 
 getExtension = lambda fileName : fileName.split('.')[-1]
 
@@ -37,17 +36,17 @@ def generateSignature(symbol, name, date):
         return signature_one.format(open=symbol[0], close=symbol[1], name=name, date=date)
 
 
-# Checks if file has already been signed before
+# Checks if file has already been signed before 
 def fileAlreadySigned(contents, signature):
-    return signature[0:40] in contents
-
+    return signature[0:40] in contents[0:50]  #checking 0-50th index of the string instead of the whole string, to increase search time
 # Signs a file
 def signFile(filePath, symbol, author): 
     date = createdAt(filePath)
     signature = generateSignature(symbol, author, date)
     f = open(filePath, 'r')
     contents = f.readlines()
-    if not fileAlreadySigned(''.join(contents), signature): 
+ 
+    if not fileAlreadySigned(''.join(contents).lstrip(), signature):
         contents.insert(0, signature)
         f.close()
         with open(filePath, 'w+') as f:

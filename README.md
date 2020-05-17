@@ -6,7 +6,7 @@ The signature is in form of your name and a timestamp of when the file was creat
 > **Via the command line**
   - clone the repository [here](https://github.com/Harjacober/FileSigner.git)
   - change your current directory to the `FileSigner` directory then,
-  - run `python signer.py --dir_path=[path to directory or file to be signed] --author=[name of the file owner]`
+  - run `python main.py --dir_path=[path to directory or file to be signed] --author=[name of the file owner]`
   - if specified `--dir_path` is a folder, it will sign all supported files in that folder. But if a file is specified, it will sign it if supported
 > **Windows application**
  - Download the installer file [here](https://drive.google.com/file/d/1u_6giH7OpeyLJCgA5sAn3gN6nTm8MUos/view?usp=sharing)
@@ -29,13 +29,14 @@ The signature is in form of your name and a timestamp of when the file was creat
 ```
 
 # How to contribute
-- if you would like to improve the windows application, look inside the app folder
+- To improve the windows application, look inside the app folder
 - To improve the command line application, simply look at the `main.py` file
 - To test your implementation, look inside the test folder and write test for your new implementation in the `test.py` file
   **Contribution ideas**
     - implement an optimal algorithm to check if a file has already been signed before
     - Allow the window application to support signing of a single file
     - Add support for more file types
+    - Add support for files that doesn't support multi-line comments. e.g `R files`
 
 # Sample
 ![alt text](https://github.com/Harjacober/FileSigner/blob/master/test/images/java.png)  ![alt text](https://github.com/Harjacober/FileSigner/blob/master/test/images/python.png)

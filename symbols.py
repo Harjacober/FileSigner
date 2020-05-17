@@ -17,5 +17,9 @@ symbols = {"py": ('"""','"""',False),
             "css": ('/*','*/',False),
             "html": ('<!--','-->',False),
             "dart": ('/*','*/',False),
-            "R" :('#','#',True)
-            }
+            "R" :('#','#',True),
+           "scala": ('"""', '"""',False),
+           "swift": ('"""', '"""',False),
+           "cs": ('@"', '"',False)
+           }
+
