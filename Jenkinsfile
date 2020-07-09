@@ -5,6 +5,7 @@ pipeline {
         stage('build') {
             steps {
                 sh 'python --version'
+                sh 'echo "Hello there, this is my first jenkins script"'
             }
         }
     }
