@@ -9,4 +9,15 @@ pipeline {
             }
         }
     }
+    post {
+        always {
+            sh 'echo "I ensured this run always"'
+        }
+        success {
+            sh 'echo "Yess, I made this pass"'
+        }
+        failure {
+            sh 'echo "it is my fault this failed"'
+        }
+    }
 }
